@@ -1,0 +1,18 @@
+# Docker 파일 새롭게 만들기
+# docker-Compose.yml
+
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY . .
+# 컨테이너 내폴더안에 넣어두겠다. 
+
+EXPOSE 8501
+# 스트림릿 포트번호
+
+CMD ['streamlit',''run', 'app.py', '--server.port=8501','--server.address=0.0.0.0']
